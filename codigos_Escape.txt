@@ -1,0 +1,4 @@
+http://stanislavs.org/helppc/epson_printer_codes.html
+
+CHR(15)  selecciona modo condensado
+CHR(27) CHR(77) Selecciona tipo de letra
