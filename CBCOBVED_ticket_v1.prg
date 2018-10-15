@@ -67,8 +67,8 @@
    v_linfac = 0                         && auxiliar lineas de detalles por factura
    v_forpag = [         ]               && forma de pago  Mensual, Anual, Semestral
    v_detalle = []                       && detalle de imprecion de factura
-   v_preuni = 0                         && precio unitario p/impreci�n de factura
-   v_subtot = 0                         && subtotal de item p/impreci�n de factura
+   v_preuni = 0                         && precio unitario p/impresion de factura
+   v_subtot = 0                         && subtotal de item p/impresion de factura
    v_totdescue = 0                      && total descuento en factura
 
 *  DEFINE MATRICES Y VECTORES
@@ -203,7 +203,7 @@
          brow key tran(v_nrocta,"999999"),tran(v_nrocta,"999999");
          fields;
          obscaj_fec     :h="Fecha",;
-         obscaj_det     :h="Observaci�n",;
+         obscaj_det     :h="Observacion",;
          obscaj_nom     :h="Operador";
          nomo;
          node;
@@ -298,7 +298,7 @@
      @11,20 to 18,55
      @12,23 prompt [\<a - Nro. de contrato        ]
      @13,23 prompt [\<b - Nro. de cuenta          ]
-     @14,23 prompt [\<c - Nro. de tal�n chequera  ]
+     @14,23 prompt [\<c - Nro. de talon chequera  ]
      @15,23 prompt [\<d - Nro. de C.I. del titular]
      @16,23 prompt [\<e - Nombre del titular      ]
      @17,23 prompt [\<f - Nombre de beneficiario  ]
@@ -343,7 +343,7 @@
                   store contra_m.contra_ruc to v_ructit
                   exit
                else
-                  wait [Esta cuenta fue dado de baja el d�a ] + dtoc(client_baj) + [, verifique !!] window
+                  wait [Esta cuenta fue dado de baja el doa ] + dtoc(client_baj) + [, verifique !!] window
                   do limpiavar
                endif
             else
@@ -390,7 +390,7 @@
                   exit
                else
                   if contra_est = "B"
-                     wait [Este contrato fue dado de baja el d�a ] + dtoc(contra_baj) + [, verifique !!] window
+                     wait [Este contrato fue dado de baja el doa ] + dtoc(contra_baj) + [, verifique !!] window
                   endif
                   do limpiavar
                endif
@@ -447,7 +447,7 @@
                         endif
                      else
                         if saldos_est = "B"
-                           wait [Este contrato fue dado de baja el d�a ] + dtoc(contra_baj) + [, verifique !!] window
+                           wait [Este contrato fue dado de baja el doa ] + dtoc(contra_baj) + [, verifique !!] window
                         endif
                         if saldos_aso > 0 .and. saldos_est <> "B"
                            wait [Este contrato se paga por ASOC. EMP. NRO] + alltrim(saldos_aso) + [, verifique !!] window
@@ -456,14 +456,14 @@
                      endif
                   else
                      if contra_est = "B"
-                        wait [Este contrato fue dado de baja el d�a ] + dtoc(contra_m.contra_baj) + [, verifique !!] window
+                        wait [Este contrato fue dado de baja el doa ] + dtoc(contra_m.contra_baj) + [, verifique !!] window
                      endif
                      do limpiavar
                   endif
                endif
             else
                if v_nrocon > 0
-                  wait [ No existe ningun tal�n con ese NROmero, favor verifique !!] window
+                  wait [ No existe ningun talon con ese NROmero, favor verifique !!] window
                endif
                do limpiavar
             endif
@@ -495,7 +495,7 @@
                   store contra_m.contra_ruc to v_ructit
                   exit
                else
-                  wait [Este contrato fue dado de baja el d�a ] + dtoc(client_baj) + [, verifique !!] window
+                  wait [Este contrato fue dado de baja el doa ] + dtoc(client_baj) + [, verifique !!] window
                   do limpiavar
                endif
             else
@@ -541,7 +541,7 @@
                store contra_tit to v_nrocta
                store contra_ruc to v_ructit
             else
-               wait [ Esta cuenta fue dado de baja el d�a ] + dtoc(contra_baj) + [ , favor verifique !!! ] window nowait
+               wait [ Esta cuenta fue dado de baja el doa ] + dtoc(contra_baj) + [ , favor verifique !!! ] window nowait
                do limpiavar
             endif
          endif
@@ -595,12 +595,12 @@
                    store benefi_con          to v_nrocon
                 else
                    if contra_m.contra_est = "B"
-                       wait [Este beneficiario fue dado de baja el d�a ] + dtoc(benefi_baj) + [, verifique !!] window
+                       wait [Este beneficiario fue dado de baja el doa ] + dtoc(benefi_baj) + [, verifique !!] window
                    endif
                 endif
             else
                if contra_m.contra_est = "B"
-                    wait [Este contrato fue dado de baja el d�a ] + dtoc(contra_m.contra_baj) + [, verifique !!] window
+                    wait [Este contrato fue dado de baja el doa ] + dtoc(contra_m.contra_baj) + [, verifique !!] window
                endif
                if  contra_m.contra_aso > 0 .and. contra_m.contra_est <> "B"
                     wait [Este contrato se paga por ASOC. EMPLEADOS, verifique !!] window
@@ -882,14 +882,14 @@
       @00,00 say "CUENTA.: " + transform(v_nrocta,"999999")
       @00,60 say "FECHA: "   + dtoc(v_feccob)
       @01,00 say "TITULAR: " + alltrim(v_nomtit)
-      @02,00 say replicate("�",78)
+      @02,00 say replicate("o",78)
       @03,00 say " CONTRATO   CUOTA   VENCE   ATRASO  MONTO  RECARGO    TOTAL     ACUMUL.  TALON"
-      @04,00 say replicate("�",78)
-      @16,00 say replicate("�",78)
+      @04,00 say replicate("o",78)
+      @16,00 say replicate("o",78)
       @17,00 say space(16)+"TOTAL VENCIDO.:  " + transform(v_totido,[99,999,999]) + space(01) + transform(v_totrgo,[999,999]) + space(01)+transform(v_totido+v_totrgo,[9,999,999])
       @18,00 say space(16)+"TOTAL A VENCER:  " + transform(v_totcer,[99,999,999]) + space(09) + transform(v_totcer,[9,999,999])
       @19,00 say space(16)+"TOTAL GENERAL.:  " + transform(v_totral,[99,999,999]) + space(01) + transform(v_totrgo,[999,999]) + space(01)+transform(v_totral+v_totrgo,[9,999,999])
-      @20,00 say replicate("�",78)
+      @20,00 say replicate("o",78)
       set colo to w+/b
       @21,03 say " <F4>Cobrar  <F5>Act. Cobros  <F6>Reclamos  <F7>Mensajes  <Esc>Cancelar "
       set colo to i
@@ -953,9 +953,9 @@
          @00,55 say "FECHA.....: " + dtoc(v_feccob)
          @01,00 say "TITULAR: " + alltrim(v_nomtit)
          @01,55 say "FACTURA NRO: " + transform(v_nrofac,[999999])
-         @02,00 say replicate("�",77)
+         @02,00 say replicate("o",77)
          @03,00 say "CONTRATO NRO  MONTO CUOTA  CON RECARGO  SALDO ACTUAL  FORMA PAGO  MONTO A COBRAR "
-         @04,00 say replicate("�",77)
+         @04,00 say replicate("o",77)
          v_totcobrar = 0
          v_brucobrar = 0
          v_netcobrar = 0
@@ -1285,7 +1285,7 @@
               gath memv
            endif
 
-***********       Fin actualizaci�n de descuento      *********
+***********       Fin actualizacion de descuento      *********
 
         endif
      endfor
@@ -1769,7 +1769,7 @@
                endif
             endif
 
-*************  Fin de elecci�n del primer mes  **************
+*************  Fin de eleccion del primer mes  **************
 
 *************  Elige el ultimo mes del periodo a pagar  ************
 
@@ -1783,7 +1783,7 @@
                   store year(estadcta(q,05)) to v_anomay
                endif
             endif
-************   Fin de elecci�n del ultimo mes  *************
+************   Fin de eleccion del ultimo mes  *************
             v_totfac       = v_totfac + estadcta(q,12) + estadcta(q,13)
          endif
       endfor
@@ -1902,7 +1902,7 @@
       go top
       on key label enter keyb chr(23)
       acti wind con_tar
-      brow fields tarjet_den:H="Denominaci�n",tarjet_cod:H="C�d." in wind con_tar node nomo noap
+      brow fields tarjet_den:H="Denominacion",tarjet_cod:H="Cod." in wind con_tar node nomo noap
       m.tarjet_den=tarjet_den
       codtar      =tarjet_cod
    endi
@@ -2251,7 +2251,7 @@ Endif
      if lastkey()<>27
         store space(35) to v_buscar
         @ 00     ,01 say [ Nombre?      :]
-        @ row()+2,01 say [Esta opci�n le encontrara el titular con el cual desea trabajar.]
+        @ row()+2,01 say [Esta opcion le encontrara el titular con el cual desea trabajar.]
         @ 00     ,16 get v_buscar pict[@!]
         read
         set order to nombre
@@ -2274,7 +2274,7 @@ Endif
      if lastkey()<>27
         store space(35) to v_buscar
         @ 00     ,01 say [ Nombre?      :]
-        @ row()+2,01 say [Esta opci�n le encontrara el beneficiario con el cual desea tra-    ]
+        @ row()+2,01 say [Esta opcion le encontrara el beneficiario con el cual desea tra-    ]
         @ row()+1,01 say [bajar.                                                              ]
         @ 00     ,16 get v_buscar pict[@!]
         read
@@ -2328,7 +2328,7 @@ Endif
   activate window solmodif
   @ 00,00 say [Solicitud No. ]+regisnum+[ del ]+fechasol
   @ 01,00 say [Por medio de la presente, solicito...]
-  @ 07,14 say [Haga su elecci�n o si desiste, <ESC>Escape]
+  @ 07,14 say [Haga su eleccion o si desiste, <ESC>Escape]
   activate window tipomodi
   @ 00,00 prompt [ \<Cambiar ]
   @ 00,11 say    [o]
@@ -2336,8 +2336,8 @@ Endif
   menu to opctip
   deactiva window tipomodi
   if lastkey()<>27
-     @ 04,00 say [ADVERTENCIA: Por favor escriba exactamente como dir�a el NUEVO dato]
-     @ 07,14 say [Dig�te el dato  o  si desiste, <ESC>Escape]
+     @ 04,00 say [ADVERTENCIA: Por favor escriba exactamente como diroa el NUEVO dato]
+     @ 07,14 say [Digote el dato  o  si desiste, <ESC>Escape]
      if opctip=1
         store [Cambiar] to tipomodi
         @ 01,34 say [ que se cambie ]+upper(itemmodi)
@@ -2370,14 +2370,14 @@ Endif
         @ 04,00 say space(72)
         @ 04,00 say [Debido a que:]
         @ 12,00 say [ADVERTENCIA!: Si Usted no comenta justificando adecuadamente su solici-]
-        @ 13,00 say [              tud �sta no ser� grabada asi como tampoco ser� procesada.]
+        @ 13,00 say [              tud osta no sero grabada asi como tampoco sero procesada.]
         @ 15,22 say [<CTRL-W>Graba <ESC>Escapa]
         scatter memvar memo blank
         @ 05,00 edit m.modifi_det size 06,72
         read
         if lastkey()<>27
            if empty(m.modifi_det)
-              wait [ADVERTENCIA!: No puede ser vacio, su dato no ser� procesado] wind nowait
+              wait [ADVERTENCIA!: No puede ser vacio, su dato no sero procesado] wind nowait
            else
               @ 12,00 clear to 15,72
               activate window confirma
@@ -2496,7 +2496,7 @@ Endif
           @prow()+1,01 say  SPAC(05) + m.activa_se6
         ENDIF
      ENDIF
-     @prow()+1,01  say  REPLI("�",79)
+     @prow()+1,01  say  REPLI("o",79)
      if .not. eof()
         skip
         scatter memvar
@@ -2505,9 +2505,9 @@ Endif
         EXIT
      ENDIF
   ENDDO
-  @prow()+1,01 say "�" + REPLI("�",77) + "�"
-  @prow()+1,01 say "�" + SPAC(10) + "** " + "TOTAL DE LLAMADOS:" + TRAN(v_totlla,"9999") + " ** " + "TOTAL A COBRAR:" + TRAN(v_totaco,"999,999,999") + " **" + SPAC(09) + "�"
-  @prow()+1,01 say "�" + REPLI("�",77) + "�"
+  @prow()+1,01 say "o" + REPLI("o",77) + "o"
+  @prow()+1,01 say "o" + SPAC(10) + "** " + "TOTAL DE LLAMADOS:" + TRAN(v_totlla,"9999") + " ** " + "TOTAL A COBRAR:" + TRAN(v_totaco,"999,999,999") + " **" + SPAC(09) + "o"
+  @prow()+1,01 say "o" + REPLI("o",77) + "o"
   set device  to screen
   *set printer to prn
   set console on
@@ -2522,9 +2522,9 @@ Endif
 
 *  TITULO DEL LISTADO DEL ACTIVADOR DE COBROS
    PROCEDURE TITULO
-      @00      ,01 say "�" + REPLI("�",77) + "�"
-      @prow()+1,01 say "�  " + "LLAMADOS DEL ACTIVADOR DE COBROS AL " + DTOC(DATE()) + SPAC(28) + " �"
-      @prow()+1,01 say "�" + REPLI("�",77) + "�"
+      @00      ,01 say "o" + REPLI("o",77) + "o"
+      @prow()+1,01 say "o  " + "LLAMADOS DEL ACTIVADOR DE COBROS AL " + DTOC(DATE()) + SPAC(28) + " o"
+      @prow()+1,01 say "o" + REPLI("o",77) + "o"
    RETURN
 
 * SEGUIMIENTO DE RECLAMOS DE CLIENTES.
@@ -2622,7 +2622,7 @@ Endif
          endif
       endif
       @prow()+1,01 say " SE FINIQUITO EL " + dtoc(m.reclam_ffi) + " A LAS " + m.reclam_hfi + " Hs."
-      @prow()+1,01 say replicate("�",79)
+      @prow()+1,01 say replicate("o",79)
       IF .NOT. EOF()
          skip
          scatter memvar
@@ -2631,9 +2631,9 @@ Endif
          EXIT
       ENDIF
   enddo
-  @prow()+1,01 say "�" + REPLI("�",77) + "�"
-  @prow()+1,01 say "�" + SPAC(10) + "** " + "TOTAL DE RECLAMOS:" + TRAN(v_canrec,"9999") + " ** " + "TOTAL A COBRAR:" + TRAN(v_totaco,"999,999,999") + " **" + SPAC(09) + "�"
-  @prow()+1,01 say "�" + REPLI("�",77) + "�"
+  @prow()+1,01 say "o" + REPLI("o",77) + "o"
+  @prow()+1,01 say "o" + SPAC(10) + "** " + "TOTAL DE RECLAMOS:" + TRAN(v_canrec,"9999") + " ** " + "TOTAL A COBRAR:" + TRAN(v_totaco,"999,999,999") + " **" + SPAC(09) + "o"
+  @prow()+1,01 say "o" + REPLI("o",77) + "o"
   set device  to screen
   set printer to prn
   set console on
@@ -2650,9 +2650,9 @@ Endif
 
 * Titulo del listado de reclamos.
   PROCEDURE TITURECLA
-     @00      ,01  say "�"   + REPLI("�",77) + "�"
-     @prow()+1,01  say "�"   + "RECLAMOS DE CLIENTES" + space(57) + "�"
-     @prow()+1,01  say "�"   + REPLI("�",77) + "�"
+     @00      ,01  say "o"   + REPLI("o",77) + "o"
+     @prow()+1,01  say "o"   + "RECLAMOS DE CLIENTES" + space(57) + "o"
+     @prow()+1,01  say "o"   + REPLI("o",77) + "o"
   RETURN
 
 * Fin de reclamos
@@ -2791,10 +2791,10 @@ Endif
         EXIT
      ENDIF
   enddo
-  @prow()+1,01 say  REPLI("�",79)
-  @prow()+1,01 say  "�" + REPLI("�",77) + "�"
-  @prow()+1,01 say  "�" + SPAC(25) + "** " + "TOTAL DE ENTREGAS:" + TRAN(v_totent,[9999]) + " **" + SPAC(24) + "�"
-  @prow()+1,01 say  "�" + REPLI("�",77) + "�"
+  @prow()+1,01 say  REPLI("o",79)
+  @prow()+1,01 say  "o" + REPLI("o",77) + "o"
+  @prow()+1,01 say  "o" + SPAC(25) + "** " + "TOTAL DE ENTREGAS:" + TRAN(v_totent,[9999]) + " **" + SPAC(24) + "o"
+  @prow()+1,01 say  "o" + REPLI("o",77) + "o"
   set device  to screen
   *set printer to prn
   set console on
@@ -2810,10 +2810,10 @@ Endif
 
 * Titulo del listado de mensajes.
   PROCEDURE TITUMENSA
-     @01,01       say "�"   + REPLI("�",77) + "�"
-     @prow()+1,01 say "�  " + "ENTREGAS A CLIENTE  AL " + DTOC(DATE()) + SPAC(32)
-     @prow()+1,01 say "�  " +  "TODOS LOS MENSAJEROS"   + SPAC(55) + "�"
-     @prow()+1,01 say "�" + REPLI("�",77) + "�"
+     @01,01       say "o"   + REPLI("o",77) + "o"
+     @prow()+1,01 say "o  " + "ENTREGAS A CLIENTE  AL " + DTOC(DATE()) + SPAC(32)
+     @prow()+1,01 say "o  " +  "TODOS LOS MENSAJEROS"   + SPAC(55) + "o"
+     @prow()+1,01 say "o" + REPLI("o",77) + "o"
   RETURN
 
 * Finalizar mensajes
@@ -2898,8 +2898,8 @@ PROCEDURE AVISOCOBRA
         @ prow()+1,01 say SPAC(07) + "OTR " + tran(m.avisos_otr,"999,999,999") + " " + m.avisos_obs
      endif
      @ prow(),pcol()+1 say tran(v_monaco,"999,999,999")
-     @ prow()+1,01     say REPLI("�",79)
-     @ prow()+1,01     say REPLI("�",79)
+     @ prow()+1,01     say REPLI("o",79)
+     @ prow()+1,01     say REPLI("o",79)
 
      selec avisos_m
 
@@ -2911,10 +2911,10 @@ PROCEDURE AVISOCOBRA
         exit
      endif
   enddo
-  @ prow()+1,01 say "�" + REPLI("�",78) + "�"
-  @ prow()+1,01 say "�" + SPAC(11) + "** " + "TOTAL DE AVISOS:" + TRAN(v_totavi,"9999") + " ** " + "TOTAL A COBRAR:"
-  @ prow(),pcol()+1 say TRAN(v_totaco,"999,999,999") + " **" + SPAC(10) + "�"
-  @ prow()+1,01 say  "�" + REPLI("�",78) + "�"
+  @ prow()+1,01 say "o" + REPLI("o",78) + "o"
+  @ prow()+1,01 say "o" + SPAC(11) + "** " + "TOTAL DE AVISOS:" + TRAN(v_totavi,"9999") + " ** " + "TOTAL A COBRAR:"
+  @ prow(),pcol()+1 say TRAN(v_totaco,"999,999,999") + " **" + SPAC(10) + "o"
+  @ prow()+1,01 say  "o" + REPLI("o",78) + "o"
   set device  to screen
   set printer to prn
   set console on
@@ -2931,10 +2931,10 @@ RETU
 
 * Titulo del avisos.
   PROCEDURE TITUAVISO
-     @ 01,01       say "�"   + REPLI("�",77) + "�"
-     @ prow()+1,01 say "�  " + "AVISOS POR CLIENTES AL " + DTOC(DATE()) + SPAC(30) + "            �"
-     @ prow()+1,01 say "�  " + "CLIENTE: " + m.avisos_pro + TRAN(m.avisos_con," 999999") + " "+ m.avisos_nom + SPAC(20) + "�"
-     @ prow()+1,01 say "�" + REPLI("�",77) + "�"
+     @ 01,01       say "o"   + REPLI("o",77) + "o"
+     @ prow()+1,01 say "o  " + "AVISOS POR CLIENTES AL " + DTOC(DATE()) + SPAC(30) + "            o"
+     @ prow()+1,01 say "o  " + "CLIENTE: " + m.avisos_pro + TRAN(m.avisos_con," 999999") + " "+ m.avisos_nom + SPAC(20) + "o"
+     @ prow()+1,01 say "o" + REPLI("o",77) + "o"
   RETURN
 
 * Finalizar avisos
@@ -2960,7 +2960,7 @@ RETU
  * RUTINA DE VALIDACION DE CTA. BANCARIA P/DEPOSITOS
    PROCEDURE VALICTABAN
       if v_ctaban = space(10)
-         wait "Atenci�n !!!, no ha seleccionado cta. bancaria p/deposito" window
+         wait "Atencion !!!, no ha seleccionado cta. bancaria p/deposito" window
          v_flak01 = "f"
          return
       endif
