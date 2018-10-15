@@ -26,13 +26,13 @@
    v_fectop = date()                    && fecha tope p/armar saldos
    v_codsuc = "01"                      && codigo de sucursal
    v_codpro = space(3)                  && codigo de producto
-   v_nrocta = 0                         && N� de cuenta
-   v_nrocon = 0                         && N� de contrato
+   v_nrocta = 0                         && NRO de cuenta
+   v_nrocon = 0                         && NRO de contrato
    v_nomtit = []                        && nombre del titular
    v_nomben = []                        && nombre de beneficiario
-   v_nrotal = 0                         && N� de talon chequera
-   v_cititu = []                        && N� de C.I. de titular
-   v_ructit = []                        && N� de R.U.C. de titular
+   v_nrotal = 0                         && NRO de talon chequera
+   v_cititu = []                        && NRO de C.I. de titular
+   v_ructit = []                        && NRO de R.U.C. de titular
    v_tipacc = []                        && tipo de acceso
    v_canfil = 0                         && cantidad de filas en array
    v_cancon = 0                         && cantidad de contratos
@@ -43,7 +43,7 @@
    v_subnto = 0                         && subtotal de cuotas p/contrato
    v_subrgo = 0                         && subtotal de recargos p/contrato
    v_subtal = 0                         && subtotal de totales p/contrato
-   v_nrofac = 0                         && N� de factura
+   v_nrofac = 0                         && NRO de factura
    v_tipfac = []                        && tipo de factura
    v_serfac = []                        && serie de factura
    v_canval = 0                         && cantidad de valores de cobro
@@ -53,7 +53,7 @@
    v_valiva = 0                         && valor IVA
    v_imes   = []                        && nombre del mes de cobro
    valnel   = []                        && monto factura en letras
-   v_nroci  = 0                         && N� de cedula del titular
+   v_nroci  = 0                         && NRO de cedula del titular
    v_nomben = []                        && nombre de beneficiario
    v_flak01 = []                        && bandera de control
    v_arcaux = []                        && nombre de archivo temporal
@@ -90,8 +90,8 @@
    define window busqueda  from 16,06 to 22,76 Title [ BUSQUEDA ] color scheme 5
    define window detacobro from 12,05 to 22,75 Title [ DETALLE DE VALORES ]  color scheme 5
    define window con_tar   from 17,27 to 22,60 Title [ TARGETAS DE CREDITO ] double grow
-   define window obser1    from 02,01 to 06,78 Title [ Observaciones ] double
-   define window obscajero from 07,01 to 23,78 Title [ Detalle de Observaciones ] double Foot " <ESC> para Salir "
+   define window obser1    from 02,01 to 06,78 Title [Observaciones ] double
+   define window obscajero from 07,01 to 23,78 Title [Detalle de Observaciones ] double Foot "<ESC> para Salir "
 
 *  SELECCION DE ARCHIVOS:
    &&selec 1
@@ -196,7 +196,7 @@
    if not eof()
       acti wind obser1
       @ 00,01 say [Mensaje para:]+[ ]+usuarios
-      @ 01,01 say [La Cuenta N�]+tran(v_nrocta," 999999")+[ perteneciente a: ]+trim(v_nomtit)
+      @ 01,01 say [La Cuenta NRO]+tran(v_nrocta," 999999")+[ perteneciente a: ]+trim(v_nomtit)
       @ 02,01 say [registra las siguientes observaciones:]
       do whil .t.
          acti wind obscajero
@@ -348,7 +348,7 @@
                endif
             else
                if v_nrocta > 0
-                  wait [ No existe ninguna cuenta con ese n�mero, favor verifique !!] window
+                  wait [ No existe ninguna cuenta con ese NROmero, favor verifique !!] window
                endif
                do limpiavar
             endif
@@ -396,7 +396,7 @@
                endif
             else
                if v_nrocon > 0
-                  wait [ No existe ningun contrato con ese n�mero, favor verifique !!] window
+                  wait [ No existe ningun contrato con ese NROmero, favor verifique !!] window
                endif
                do limpiavar
             endif
@@ -411,7 +411,7 @@
       @11,20 to 18,58
       do limpiavar
       do while lastkey() <> 27
-         @13,22 say "Ingrese N� de talon a cobrar:";
+         @13,22 say "Ingrese NRO de talon a cobrar:";
                 get v_nrotal picture "999999" valid ! empty(v_nrotal) error [NO PUEDE SER CERO]
          read
          if v_nrotal > 0
@@ -450,7 +450,7 @@
                            wait [Este contrato fue dado de baja el d�a ] + dtoc(contra_baj) + [, verifique !!] window
                         endif
                         if saldos_aso > 0 .and. saldos_est <> "B"
-                           wait [Este contrato se paga por ASOC. EMP. N�] + alltrim(saldos_aso) + [, verifique !!] window
+                           wait [Este contrato se paga por ASOC. EMP. NRO] + alltrim(saldos_aso) + [, verifique !!] window
                         endif
                         do limpiavar
                      endif
@@ -463,7 +463,7 @@
                endif
             else
                if v_nrocon > 0
-                  wait [ No existe ningun tal�n con ese n�mero, favor verifique !!] window
+                  wait [ No existe ningun tal�n con ese NROmero, favor verifique !!] window
                endif
                do limpiavar
             endif
@@ -500,7 +500,7 @@
                endif
             else
                if v_nroci > 0
-                  wait [ No existe ningun titular con ese N� de C.I., favor verifique !!] window
+                  wait [ No existe ningun titular con ese NRO de C.I., favor verifique !!] window
                endif
                do limpiavar
             endif
@@ -529,7 +529,7 @@
          brow fiel;
          contra_nom      :H="Apellido, Nombre" :35    ,;
          contra_ndo      :H="Identidad"  :P=[99999999],;
-         contra_tit      :H="N� cuenta"  :P=[999999]   ;
+         contra_tit      :H="NRO cuenta"  :P=[999999]   ;
          nomodify			 						   ;
          noappend									   ;
          nodelete									   ;
@@ -952,9 +952,9 @@
          @00,00 say "CUENTA.: " + transform(v_nrocta,[999999])
          @00,55 say "FECHA.....: " + dtoc(v_feccob)
          @01,00 say "TITULAR: " + alltrim(v_nomtit)
-         @01,55 say "FACTURA N�: " + transform(v_nrofac,[999999])
+         @01,55 say "FACTURA NRO: " + transform(v_nrofac,[999999])
          @02,00 say replicate("�",77)
-         @03,00 say "CONTRATO N�  MONTO CUOTA  CON RECARGO  SALDO ACTUAL  FORMA PAGO  MONTO A COBRAR "
+         @03,00 say "CONTRATO NRO  MONTO CUOTA  CON RECARGO  SALDO ACTUAL  FORMA PAGO  MONTO A COBRAR "
          @04,00 say replicate("�",77)
          v_totcobrar = 0
          v_brucobrar = 0
@@ -1050,8 +1050,8 @@
          store date()  to detavalo(v_canval,03)
          @row()+1,00  say "FECHA VENCIMIENTO...: "
          @row(),col() get detavalo(v_canval,03) valid !empty(detavalo(v_canval,03)) error [DEBE CARGAR DE VENCIMIENTO DEL CHEQUE O TARJETA]
-         @row()+1,00  say "N� DEL VALOR........: "
-         @row(),col() get detavalo(v_canval,04) picture[@!] valid !empty(detavalo(v_canval,04)) error [DEBE CARGAR EL N� DEL CHEQUE O TARJETA]
+         @row()+1,00  say "NRO DEL VALOR........: "
+         @row(),col() get detavalo(v_canval,04) picture[@!] valid !empty(detavalo(v_canval,04)) error [DEBE CARGAR EL NRO DEL CHEQUE O TARJETA]
          if detavalo(v_canval,01) = "CHE"
             @row()+1,00  say "ENTIDAD EMISORA.....: "
             @row(),col() get detavalo(v_canval,05) valid valban(detavalo(v_canval,05))
@@ -1373,7 +1373,7 @@
      endfor
    RETURN
 
-* ACTUALIZA N� FACTURA EN ARCHIVO DE TALONARIOS
+* ACTUALIZA NRO FACTURA EN ARCHIVO DE TALONARIOS
   PROCEDURE ACTUATALON
      selec talona_m
 
@@ -1834,7 +1834,7 @@
                         v_detalle = [Pago ]+estadcta(q,02)+[ ]+tran(estadcta(q,03),"999999")+[, ]
                      endif
                endcase
-               v_detalle = v_detalle + iif(estadcta(q,02)="PSM","cuota de " + v_dmes,"cuota N� " + estadcta(q,04))
+               v_detalle = v_detalle + iif(estadcta(q,02)="PSM","cuota de " + v_dmes,"cuota NRO " + estadcta(q,04))
                if estadcta(q,02) = "CMS"
                   v_detalle = v_detalle +  " de " + transform(year(estadcta(q,05)),[9999])
                endif
@@ -2571,7 +2571,7 @@ Endif
      *******************
      *  Imprime linea  *
      *******************
-      @prow()+1,01 say  " RECLAMO N�.: " + TRANSFORM(reclam_num,"999999")
+      @prow()+1,01 say  " RECLAMO NRO.: " + TRANSFORM(reclam_num,"999999")
       @prow()+1,01 say  " " + m.reclam_pro + "........: " + TRANSFORM(m.reclam_con,"999999") + " " + v_nomtit;
                                            + "  " + "COBRADOR..: " + m.reclam_cob
       selec forrec_m
