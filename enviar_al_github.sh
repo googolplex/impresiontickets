@@ -5,5 +5,5 @@ cp ./fuentes/*.txt ./impresiontickets/
 cp ./*.sh ./impresiontickets/
 cd impresiontickets
 git add -A
-git commit -a -m "programa de impresion de tickets"
+git commit -a -m $1
 git push -u origin master
