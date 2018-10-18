@@ -1640,16 +1640,20 @@
 *******************************************************************
 *	IMPRIME TOTALES DE LA FACTURA
 *******************************************************************
+* MODIFICADO el 2018.10.18a
+
       do a0opeags with v_totfac
       v_preiva = round(v_totfac/1.1,0)
       v_valiva = v_totfac - v_preiva
 
-      @ prow()+1,142 say v_totfac  pict "999,999,999"
-      @ prow()+1, 38 say subs(valnel,1,60) &&( Importe en Letras )
-      @ prow()  ,142 say v_totfac  pict "999,999,999"
-
-      @ prow()+2,80 say v_valiva pict "99,999,999"
-      @ prow()  ,113 say v_valiva pict "99,999,999"
+      @ prow()+1,0 say [TOTFAC]
+      @ prow()+1,10 say v_totfac  pict "999,999,999"
+* quito el monto en letras
+*      @ prow()+1, 38 say subs(valnel,1,60) &&( Importe en Letras )
+*      @ prow()  ,142 say v_totfac  pict "999,999,999"
+      @ prow()+1,0 say [IVA]
+      @ prow(),10 say v_valiva pict "99,999,999"
+*      @ prow()  ,113 say v_valiva pict "99,999,999"
 
       v_linea  = v_linea + 8
 	  eject
@@ -1738,10 +1742,10 @@
 *  IMPRIME LINEA DE DETALLE FACTURA
    PROCEDURE IMPRIDETA
       v_linea = v_linea  + 1
-      @ prow()  , 27  say v_detalle
-      @ prow()  , 92  say v_preuni  pict  "999,999,999"
-      @ prow()  , 142 say v_subtot  pict  "999,999,999"
-      @ prow()+1, 21  say [ ]
+      @ prow()  , 0  say v_detalle
+      @ prow()  , 65  say v_preuni  pict  "999,999,999"
+      @ prow()  , 115 say v_subtot  pict  "999,999,999"
+      @ prow()+1,0  say [ ]
    RETURN
 
 
@@ -2981,4 +2985,3 @@ RETU
   return
 
 * FIN
-
