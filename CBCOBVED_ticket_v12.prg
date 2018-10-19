@@ -1702,7 +1702,8 @@
       @ prow() + 1,0 say "R.U.C.: 80001620-3"
       @ prow() + 1,0 say "TIMBRADO: 12506778"
       @ prow() + 1,0 say "FACTURA: "
-      @ prow() , 15  say v_nrofac pict [999999999999]
+      @ prow() , 15  say v_nrofac pict [99999999999999]
+      @ prow() , 15  say trim(v_tipfac)
       @ prow() + 1,0 say "VALIDO DESDE: 18/12/2017"
       @ prow() + 1,0 say "VALIDO HASTA: 31/12/2017"
       @ prow() + 1,0 say "CODIGO DESCRIPCION PRECIO"
