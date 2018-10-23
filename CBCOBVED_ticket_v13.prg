@@ -1695,7 +1695,7 @@
       ??? chr(27)+chr(77)
       do valmes
       * @ prow() + v_linea,5 say [PARQUE SERENIDAD S.R.L.]
-      @ prow() + 1 ,0 say [VERSION 12]
+      @ prow() + 1 ,0 say [VERSION 13]
       @ prow() + 1 ,0 say [PARQUE SERENIDAD S.R.L.]
       @ prow() + 1,0 say "CAPITAL: Gs 1.000.000 "
       @ prow() + 1,0 say [SERVICIOS FUNERALES Y CAJONERIA]
