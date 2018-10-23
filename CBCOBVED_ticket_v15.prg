@@ -1710,7 +1710,7 @@
       @ prow() + 1,0 say "Factura:"
       @ prow() , 15  say trim(v_tipfac)
       @ prow() + 1,0 say "NRO: 006-001-"
-      @ prow() , 10  say v_nrofac pict [99999999999999]
+      @ prow() , 6  say v_nrofac pict [99999999999999]
       @ prow() + 1,0 say "Valido desde: 18/12/2017"
       @ prow() + 1,0 say "Valido hasta: 31/12/2017"
       @ prow() + 1,0 say "CANTIDAD DESCRIPCION PU PRECIO IVA"
