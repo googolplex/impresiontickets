@@ -1670,12 +1670,12 @@
       v_linea  = v_linea + 8
 
 
-      @ prow() + 1,0 say "ATENDIO : CAJERO1"
-      @ prow() + 1,0 say "*** GRACIAS POR SU PREFERENCIA ***"
+      @ prow() + 1,0 say "Atendio : CAJERO1"
+      @ prow() + 1,0 say "* Gracias por su preferencia *"
       @ prow() + 1,0 say "------------------------------"
-      @ prow() + 1,0 say "ORIGINAL: CLIENTE"
-      @ prow() + 1,0 say "DUPLICADO: ARCHIVO TRIBUTARIO"
-      @ prow() + 1,0 say "TRIPLICADO: CONTABILIDAD"
+      @ prow() + 1,0 say "Original: CLIENTE"
+      @ prow() + 1,0 say "Duplicado: ARCHIVO TRIBUTARIO"
+      @ prow() + 1,0 say "Triplicado: CONTABILIDAD"
 
 	  eject
       set device  to screen
@@ -1694,7 +1694,7 @@
       ??? chr(27)+chr(77)
       do valmes
       * @ prow() + v_linea,5 say [PARQUE SERENIDAD S.R.L.]
-      @ prow() + 1 ,0 say [VERSION 13]
+      @ prow() + 1 ,0 say [VERSION 14]
       @ prow() + 1 ,0 say [PARQUE SERENIDAD S.R.L.]
       @ prow() + 1,0 say "CAPITAL: Gs 1.000.000 "
       @ prow() + 1,0 say [SERVICIOS FUNERALES Y CAJONERIA]
@@ -1750,7 +1750,8 @@
       * le quito el precio unitario 2018.10.20a
       *@ prow(), 65  say v_preuni  pict  "999,999,999"
       *@ prow(), 115 say v_subtot  pict  "999,999,999"
-      @ prow(), 65 say v_subtot  pict  "999,999,999"
+* no hace falta
+*      @ prow(), 65 say v_subtot  pict  "999,999,999"
       @ prow()+1,0  say [ ]
    RETURN
 
